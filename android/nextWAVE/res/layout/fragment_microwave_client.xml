@@ -42,5 +42,11 @@
         android:layout_height="wrap_content"
         android:text="@string/button_scan"
         android:layout_below="@+id/scan_content" />
+    
+    <TextView android:id="@+id/retrieved_cooking_time"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textIsSelectable="true"
+	    android:layout_below="@id/button_scan" />
 
 </RelativeLayout>

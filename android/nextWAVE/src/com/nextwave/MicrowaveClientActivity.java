@@ -62,14 +62,46 @@ public class MicrowaveClientActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    String scannedBarcode;
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	super.onActivityResult(requestCode, resultCode, intent);
     	
     	IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+    	scannedBarcode = scanningResult.getContents();
     	
     	if (scanningResult != null) {
     		TextView barcodeTextView = (TextView)findViewById(R.id.scan_content);
-    		barcodeTextView.setText(scanningResult.getContents());
+    		barcodeTextView.setText(scannedBarcode);
+          
+            Firebase kitKat = new Firebase("https://nextwave.firebaseio.com/foods");
+            kitKat.addListenerForSingleValueEvent(new ValueEventListener() {
+            	@Override
+            	public void onDataChange(DataSnapshot snapshot) {
+                    for (DataSnapshot child : snapshot.getChildren()) {
+                    	Object value = child.getValue();
+                    	long barcode = (long)((Map)value).get("barcode");
+                    	if (barcode == Long.parseLong(scannedBarcode))
+                    	{
+                    		Log.d("cookingTime", ((Map)value).get("time").toString());
+                    		TextView retrievedCookingTime = (TextView)findViewById(R.id.retrieved_cooking_time);
+                    		retrievedCookingTime.setText("Cooking Time from Server: " + ((Map)value).get("time").toString());
+                    	}
+                    		
+                    }
+            	}
+            	
+            	public void onCancelled() {
+            		System.err.println("Listener was cancelled");
+            	}
+    
+    			@Override
+    			public void onCancelled(FirebaseError arg0) {
+    				// TODO Auto-generated method stub
+    				
+    			}
+            });
+  
+            Log.d("kitkat", kitKat.getName());
     	}
     	
     }
