@@ -1,0 +1,7 @@
+freetype-py==1.0
+sh==1.08
+twisted==12.0.0
+autobahn==0.5.14
+websocket-client==0.12.0
+pyserial>=2.6
+pypng==0.0.16

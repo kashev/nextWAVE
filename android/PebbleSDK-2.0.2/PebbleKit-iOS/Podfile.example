@@ -1,0 +1,7 @@
+# Cocoapods.org Example configuration for PebbleKit iOS
+#
+# Add this line to the Podfile in your project, then do `pod install`
+# to add PebbleKit.framework and PebbleVendor.framework to your project
+# and set up any required configuration:
+
+pod 'PebbleKit', :path => "/path/to/PebbleKit-iOS"

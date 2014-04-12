@@ -3,6 +3,7 @@ package com.nextwave;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -14,6 +15,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.HttpResponse;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,6 +32,9 @@ import com.firebase.client.Firebase;
 
 import com.google.zxing.integration.android.*;
 
+import com.getpebble.*;
+import com.getpebble.android.kit.PebbleKit;
+
 
 public class MicrowaveClientFragment extends Fragment {
 
@@ -40,9 +45,17 @@ public class MicrowaveClientFragment extends Fragment {
 	String sparkURL = "https://api.spark.io/v1/devices/48ff70065067555028111587/";
 	String sparkToken = "4348526a1c0932c678d6e971ce456b9d2ea4a1f5";
 	
+	private final static UUID PEBBLE_APP_UUID = UUID.fromString("f798b9e5-d4e9-4b8b-b88d-30d2707d5dc7");
+	
     public MicrowaveClientFragment() {
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mainActivity = activity;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -106,7 +119,13 @@ public class MicrowaveClientFragment extends Fragment {
 				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
 				
 				// Execute HTTP Post Request
+				// is this blocking?
 				HttpResponse response = httpclient.execute(httppost);
+				
+				// Talk to pebble yo
+				if (PebbleKit.isWatchConnected(mainActivity)) {
+					PebbleKit.startAppOnPebble(mainActivity, PEBBLE_APP_UUID);
+				}
 				
 			} catch (ClientProtocolException e) {
 				// TODO

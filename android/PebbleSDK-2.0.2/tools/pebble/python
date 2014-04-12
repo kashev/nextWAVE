@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+# This script insures that we use python version 2 when python3 
+# is the default python executable
+python2 $@
+

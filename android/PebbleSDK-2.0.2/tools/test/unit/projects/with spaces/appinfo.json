@@ -1,0 +1,43 @@
+{
+  "uuid": "2ff7fa04-6011-4a98-8a3b-a826a4b899f8",
+  "shortName": "Draw Bitmap",
+  "longName": "Draw Bitmap",
+  "companyName": "Pebble Technology",
+  "versionCode": 2,
+  "versionLabel": "2.0.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {},
+  "resources": {
+    "media": [
+      {
+        "type": "png",
+        "name": "IMAGE_NO_LITTER",
+        "file": "images/no_litter_crop.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_NO_LITTER1",
+        "file": "images/no_litter_crop1.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_NO_LITTER2",
+        "file": "images/no_litter_crop2.png"
+      },
+      {
+        "type": "raw",
+        "name": "RAW",
+        "file": "raw/subdir/blob.bin"
+      },
+      {
+        "name": "FUTURA_40",
+        "trackingAdjust": -4,
+        "characterRegex": "[0-9\u00b0 -]",
+        "file": "fonts/futura.ttf",
+        "type": "font"
+      }
+    ]
+  }
+}
