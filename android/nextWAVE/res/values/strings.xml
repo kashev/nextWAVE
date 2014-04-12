@@ -4,5 +4,7 @@
     <string name="app_name">nextWAVE</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+	<string name="button_send">Send to DB</string>
+	<string name="button_scan">Scan Barcode</string>
+    
 </resources>
