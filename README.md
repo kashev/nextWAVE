@@ -11,4 +11,4 @@ smrtMCRWV
 
 ## About
 
-smrtMCRWV is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
+**smrtMCRWV** is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
