@@ -1,7 +1,7 @@
-smrtMCRWV
+nextWAVE
 =========
 
-    smrtMCRWV
+    nextWAVE
     A project for HackIllinois 2014
 
     Dario Aranguiz :: aranguizdario@gmail.com
@@ -11,4 +11,4 @@ smrtMCRWV
 
 ## About
 
-**smrtMCRWV** is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
+**nextWAVE** is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
