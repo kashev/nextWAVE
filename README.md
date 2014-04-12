@@ -28,7 +28,7 @@ nextWAVE
     - [ ] Send Commands to the Spark
     - [ ] Send Remaining Cook Time to the Pebble
     - [ ] Scan Barcodes
-    - [ ] Communicate with FireBase Backend
+    - [X] Communicate with FireBase Backend
     - [ ] Facebook Login
 - [ ] Pebble App
     - [ ] Get and Display Remaining Cook Time
