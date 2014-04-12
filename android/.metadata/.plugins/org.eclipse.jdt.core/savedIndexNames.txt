@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+C:\Users\Dario\Documents\GitHub\nextwave\android\.metadata\.plugins\org.eclipse.jdt.core
+2601790275.index
+1215701381.index
+3294132898.index
+1284074322.index
