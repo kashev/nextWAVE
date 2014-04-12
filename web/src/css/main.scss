@@ -1,0 +1,60 @@
+/*
+ * nextWAVE
+ * A project for HackIllinois 2014
+ *
+ * Dario Aranguiz :: aranguizdario@gmail.com
+ * Kashev Dalmia  :: kashev.dalmia@gmail.com
+ * Brady Salz     :: brady.salz@gmail.com
+ * Ahmed Suhyl    :: sulaimn2@illinois.edu
+ * 
+ * main.scss
+ */
+
+/* ROBOTO, THIN */
+@import url("http://fonts.googleapis.com/css?family=Roboto:600,400,100");
+
+/*
+ * VARAIBLES
+ */
+$font-stack  : "Roboto";
+$header-size : 6.0rem;
+
+
+/*
+ * TAG STYLING
+ */
+html body {
+  font-family: $font-stack;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-family: $font-stack;
+  font-size: $header-size;
+}
+
+
+/*
+ * UTILITY CLASSES
+ */
+.thin {
+  font-weight: 100;
+}
+
+/*
+ * ONE OFFS
+ */
+
+#bylines {
+  font-size: 2.0rem;
+  text-align: center;
+}
+
+.banner-img {
+  max-height: $header-size;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
