@@ -1,0 +1,17 @@
+{
+  "uuid": "f798b9e5-d4e9-4b8b-b88d-30d2707d5dc7",
+  "shortName": "nextWAVE",
+  "longName": "nextWAVE",
+  "companyName": "Brady Rocks",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
