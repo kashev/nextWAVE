@@ -19,6 +19,7 @@ nextWAVE
 - [ ] Working Microwave
     - [X] Manual Switching
     - [ ] Relay Controlled Switching 
+    - [ ] Add NFC Launching Pads
     - [ ] Decorate
 - [ ] Working Spark Core Code
     - [X] Switch a pin on & off
