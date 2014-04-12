@@ -17,18 +17,36 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
         android:hint="Barcode"
-        android:layout_below="@+id/food_name"/>
+        android:layout_below="@+id/food_name" />
     
     <EditText android:id ="@+id/cooking_time"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
         android:hint="Cooking Time"
-        android:layout_below="@+id/barcode"/> 
+        android:layout_below="@+id/barcode" /> 
          
     <Button android:id="@+id/button_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_send" 
-        android:layout_below="@+id/cooking_time"/>
+        android:layout_below="@+id/cooking_time" />
+    
+    <TextView android:id="@+id/scan_format"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textIsSelectable="true"
+	    android:layout_below="@+id/button_send" />
+    
+    <TextView android:id="@+id/scan_content"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textIsSelectable="true"
+	    android:layout_below="@id/scan_format" />
+    
+    <Button android:id="@+id/button_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_scan"
+        android:layout_below="@+id/scan_content" />
 
 </RelativeLayout>
