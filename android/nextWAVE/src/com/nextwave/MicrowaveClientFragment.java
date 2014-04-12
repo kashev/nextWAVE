@@ -1,6 +1,21 @@
 package com.nextwave;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.HttpResponse;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +32,9 @@ import com.firebase.client.Firebase;
 
 import com.google.zxing.integration.android.*;
 
+import com.getpebble.*;
+import com.getpebble.android.kit.PebbleKit;
+
 
 public class MicrowaveClientFragment extends Fragment {
 
@@ -24,13 +42,25 @@ public class MicrowaveClientFragment extends Fragment {
 	private TextView formatText, contentText;
 	Activity mainActivity = getActivity();
 	
+	String sparkURL = "https://api.spark.io/v1/devices/48ff70065067555028111587/";
+	String sparkToken = "4348526a1c0932c678d6e971ce456b9d2ea4a1f5";
+	
+	private final static UUID PEBBLE_APP_UUID = UUID.fromString("f798b9e5-d4e9-4b8b-b88d-30d2707d5dc7");
+	
     public MicrowaveClientFragment() {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mainActivity = activity;
+    }
+    
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_microwave_client, container, false);
+        
+    	View rootView = inflater.inflate(R.layout.fragment_microwave_client, container, false);
         mainView = rootView;
         
         Button sendButton = (Button) rootView.findViewById(R.id.button_send);
@@ -39,6 +69,11 @@ public class MicrowaveClientFragment extends Fragment {
         Button scanButton = (Button) rootView.findViewById(R.id.button_scan);
         scanButton.setOnClickListener(barcodeScan);
         
+        Button sparkOnButton = (Button) rootView.findViewById(R.id.button_spark_on);
+        sparkOnButton.setOnClickListener(sparkTurnOn);
+        
+        Button sparkOffButton = (Button) rootView.findViewById(R.id.button_spark_off);
+        sparkOffButton.setOnClickListener(sparkTurnOff);
        
         return rootView;
     }
@@ -69,17 +104,59 @@ public class MicrowaveClientFragment extends Fragment {
 		}
 	};
 	
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//    	super.onActivityResult(requestCode, resultCode, intent);
-
+	View.OnClickListener sparkTurnOn = new View.OnClickListener() {
 		
-		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-    	
-    	if (scanningResult != null) {
-    		Toast toast = Toast.makeText(getActivity().getApplicationContext(), /*scanningResult.getContents()*/ "Fragment", Toast.LENGTH_SHORT);
-    		toast.show();
-    		Log.d("barcode", "scanned from fragment");
-    	}
-    	
-    }
+		@Override
+		public void onClick(View v) {
+			HttpClient httpclient = new DefaultHttpClient(); 
+			HttpPost httppost = new HttpPost(sparkURL + "cook");
+			
+			try {
+				// Add data
+				List<NameValuePair> toSpark = new ArrayList<NameValuePair>(2);
+				toSpark.add(new BasicNameValuePair("access_token", sparkToken));
+				toSpark.add(new BasicNameValuePair("time", "10"));
+				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
+				
+				// Execute HTTP Post Request
+				// is this blocking?
+				HttpResponse response = httpclient.execute(httppost);
+				
+				// Talk to pebble yo
+				if (PebbleKit.isWatchConnected(mainActivity)) {
+					PebbleKit.startAppOnPebble(mainActivity, PEBBLE_APP_UUID);
+				}
+				
+			} catch (ClientProtocolException e) {
+				// TODO
+			} catch (IOException e) {
+				// TODO
+			}
+		}
+	};
+	
+	View.OnClickListener sparkTurnOff = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			HttpClient httpclient = new DefaultHttpClient(); 
+			HttpPost httppost = new HttpPost(sparkURL + "stopcook");
+			
+			try {
+				// Add data
+				List<NameValuePair> toSpark = new ArrayList<NameValuePair>(1);
+				toSpark.add(new BasicNameValuePair("access_token", sparkToken));
+//				toSpark.add(new BasicNameValuePair("time", "1"));
+				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
+				
+				// Execute HTTP Post Request
+				HttpResponse response = httpclient.execute(httppost);
+				
+			} catch (ClientProtocolException e) {
+				// TODO
+			} catch (IOException e) {
+				// TODO
+			}
+		}
+	};
 }
