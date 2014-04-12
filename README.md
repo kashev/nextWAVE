@@ -12,3 +12,26 @@ nextWAVE
 ## About
 
 **nextWAVE** is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
+
+
+## TODO
+
+- [ ] Working Microwave
+    - [X] Manual Switching
+    - [ ] Relay Controlled Switching 
+    - [ ] Decorate
+- [ ] Working Spark Core Code
+    - [X] Switch a pin on & off
+    - [ ] Control a Screen
+- [ ] Working Android App
+    - [ ] Send Commands to the Spark
+    - [ ] Send Remaining Cook Time to the Pebble
+    - [ ] Scan Barcodes
+    - [ ] Communicate with FireBase Backend
+    - [ ] Facebook Login
+- [ ] Pebble App
+    - [ ] Get and Display Remaining Cook Time
+- [ ] Website
+    - [ ] Looks Nice
+    - [ ] Link to Github Code
+    - [ ] Food Stream
