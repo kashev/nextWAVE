@@ -25,6 +25,9 @@
 #define TOPBAR_HEIGHT 20
 #define TIME_FORMAT   "%M:%S"
 
+#define INBOUND_SIZE  64
+#define OUTBOUND_SIZE 64
+
 #define STATUS_READY   "Scan your food!"
 #define STATUS_COOKING "Food is cooking..."
 #define STATUS_DONE    "Your food is done!"
@@ -47,12 +50,10 @@ static TextLayer * state_layer;
 
 /* STATUS */
 typedef enum {
-    READY,
-    COOKING,
-    DONE
+    READY = 0x00,
+    COOKING = 0x01,
+    DONE = 0x02
 } nextWaveState;
-
-static nextWaveState state = READY;
 
 /* Frame to create text layer size */
 static GRect logoFrame = {
@@ -88,9 +89,45 @@ static GRect statusFrame = {
     }
 };
 
+/*
+ * TIME RENDERING
+ */
 /* Stored Time */
 static char time_text[] = "00:00";
-static uint32_t seconds_left = 10;
+static void
+render_time (uint32_t s)
+{
+    struct tm t;
+    t.tm_min = s / 60;
+    t.tm_sec = s % 60;
+
+    strftime(time_text, sizeof(time_text), TIME_FORMAT, &t);
+    text_layer_set_text(time_layer, time_text);
+}
+
+/*
+ * STATE RENDERING
+ */
+static void
+render_state (nextWaveState s)
+{
+    switch (s)
+    {
+        case READY:
+            text_layer_set_text(state_layer, STATUS_READY);
+            break;
+        case COOKING:
+            text_layer_set_text(state_layer, STATUS_COOKING);
+            break;
+        case DONE:
+            text_layer_set_text(state_layer, STATUS_DONE);
+            break;
+        default:
+            text_layer_set_text(state_layer, "ERROR");
+            break;
+    }
+}
+
 
 // /*
 //  * CLICK HANDLING
@@ -121,68 +158,78 @@ static uint32_t seconds_left = 10;
 //     window_single_click_subscribe(BUTTON_ID_DOWN, down_click_handler);
 // }
 
-/*
- * TIME RENDERING
- */
-static void
-render_time (uint32_t s)
-{
-    struct tm t;
-    t.tm_min = s / 60;
-    t.tm_sec = s % 60;
 
-    strftime(time_text, sizeof(time_text), TIME_FORMAT, &t);
+// /*
+//  * TIME HANDLING
+//  */
+// static void
+// handle_second_tick (struct tm * tick_time, TimeUnits units_changed)
+// {
+//     if (seconds_left != 0)
+//     {
+//         seconds_left--;
+//     }
+//     if (seconds_left == 0)
+//     {
+//         vibes_long_pulse();
+//         state = DONE;
+//     }
+// 
+//     render_state(state);
+//     render_time(seconds_left);
+//     text_layer_set_text(time_layer, time_text);
+// }
+
+
+/*
+ * APPSYNC
+ */
+static AppSync sync;
+static uint8_t sync_buffer[32];
+
+enum nextWaveAppSyncKeys
+{
+    NEXTWAVE_STATE_KEY = 0x00,
+    NEXTWAVE_TIME_KEY  = 0x01
+};
+
+static void
+sync_error_callback (DictionaryResult dict_error, AppMessageResult app_message_error, void *context)
+{
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Sync Error: %d", app_message_error);
 }
 
-/*
- * STATE RENDERING
- */
 static void
-render_state (nextWaveState s)
+sync_tuple_changed_callback (const uint32_t key,
+                             const Tuple* new_tuple,
+                             const Tuple* old_tuple,
+                                   void * context)
 {
-    switch(s){
-        case READY:
-            text_layer_set_text(state_layer, STATUS_READY);
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "RUNNING THE SYNC TUPLE CHANGED CALLBACK");
+    switch (key)
+    {
+        case NEXTWAVE_STATE_KEY:
+            render_state(new_tuple->value->uint8);
+            APP_LOG(APP_LOG_LEVEL_DEBUG, "RENDERED THE STATE: %u", new_tuple->value->uint8);
             break;
-        case COOKING:
-            text_layer_set_text(state_layer, STATUS_COOKING);
-            break;
-        case DONE:
-            text_layer_set_text(state_layer, STATUS_DONE);
+        case NEXTWAVE_TIME_KEY:
+            render_time(new_tuple->value->uint32);
+            APP_LOG(APP_LOG_LEVEL_DEBUG, "RENDERED THE TIME: %u", (uint) new_tuple->value->uint32);
             break;
         default:
-            text_layer_set_text(state_layer, "ERROR");
-            break;
+            APP_LOG(APP_LOG_LEVEL_DEBUG, "ERROR STATE");
+            render_state(4);
     }
 }
+
 
 /*
- * TIME HANDLING
+ * UI SETUP
  */
-static void
-handle_second_tick (struct tm * tick_time, TimeUnits units_changed)
-{
-    if (seconds_left != 0)
-    {
-        seconds_left--;
-    }
-    if (seconds_left == 0)
-    {
-        vibes_long_pulse();
-        state = DONE;
-    }
-
-    render_state(state);
-    render_time(seconds_left);
-    text_layer_set_text(time_layer, time_text);
-}
-
-
 static void
 window_load (Window *window)
 {
     Layer *window_layer = window_get_root_layer(window);
-    GRect bounds        = layer_get_bounds(window_layer);
 
     /*
      * Logo
@@ -198,9 +245,9 @@ window_load (Window *window)
     text_layer_set_font(time_layer,  fonts_get_system_font(TIME_FONT));
     text_layer_set_font(state_layer, fonts_get_system_font(STATUS_FONT));
     
-    text_layer_set_text(time_layer,  time_text);
+    // text_layer_set_text(time_layer,  time_text);
     text_layer_set_text(logo_layer,  LOGO_TEXT);
-    text_layer_set_text(state_layer, STATUS_DONE);
+    // text_layer_set_text(state_layer, STATUS_DONE);
 
     text_layer_set_text_alignment(time_layer,  GTextAlignmentCenter);
     text_layer_set_text_alignment(logo_layer,  GTextAlignmentCenter);
@@ -210,15 +257,36 @@ window_load (Window *window)
     layer_add_child(window_layer, text_layer_get_layer(logo_layer));
     layer_add_child(window_layer, text_layer_get_layer(state_layer));
 
+    // /*
+    //  * Set Second Tick Handler
+    //  */
+    // tick_timer_service_subscribe(SECOND_UNIT, &handle_second_tick);
+
     /*
-     * Set Second Tick Handler
+     * App Sync
      */
-    tick_timer_service_subscribe(SECOND_UNIT, &handle_second_tick);
+    Tuplet initial_values[] = {
+        TupletInteger(NEXTWAVE_STATE_KEY, (uint8_t) READY),
+        TupletInteger(NEXTWAVE_TIME_KEY, (uint8_t) 0),
+    };
+    app_sync_init(&sync,
+                  sync_buffer,
+                  sizeof(sync_buffer),
+                  initial_values,
+                  ARRAY_LENGTH(initial_values),
+                  sync_tuple_changed_callback,
+                  sync_error_callback,
+                  NULL);
 }
 
+/*
+ * UI TEARDOWN
+ */
 static void
 window_unload (Window *window)
 {
+    app_sync_deinit(&sync);
+
     text_layer_destroy(logo_layer);
     text_layer_destroy(time_layer);
     text_layer_destroy(state_layer);
@@ -235,6 +303,9 @@ init (void)
         .load   = window_load,
         .unload = window_unload,
     });
+
+    app_message_open(INBOUND_SIZE, OUTBOUND_SIZE);
+
     const bool animated = true;
     window_stack_push(window, animated);
 }
@@ -243,6 +314,7 @@ static void
 deinit (void)
 {
     window_destroy(window);
+
 }
 
 int
