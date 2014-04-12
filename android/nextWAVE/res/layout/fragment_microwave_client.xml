@@ -55,4 +55,11 @@
         android:text="Turn Spark On"
         android:layout_below="@+id/retrieved_cooking_time" />
 
+    <Button android:id="@+id/button_spark_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn Spark Off"
+        android:layout_below="@+id/button_spark_on" />
+    
+    
 </RelativeLayout>

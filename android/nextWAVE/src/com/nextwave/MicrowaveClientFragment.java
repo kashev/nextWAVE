@@ -46,7 +46,8 @@ public class MicrowaveClientFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_microwave_client, container, false);
+        
+    	View rootView = inflater.inflate(R.layout.fragment_microwave_client, container, false);
         mainView = rootView;
         
         Button sendButton = (Button) rootView.findViewById(R.id.button_send);
@@ -58,6 +59,8 @@ public class MicrowaveClientFragment extends Fragment {
         Button sparkOnButton = (Button) rootView.findViewById(R.id.button_spark_on);
         sparkOnButton.setOnClickListener(sparkTurnOn);
         
+        Button sparkOffButton = (Button) rootView.findViewById(R.id.button_spark_off);
+        sparkOffButton.setOnClickListener(sparkTurnOff);
        
         return rootView;
     }
@@ -99,7 +102,32 @@ public class MicrowaveClientFragment extends Fragment {
 				// Add data
 				List<NameValuePair> toSpark = new ArrayList<NameValuePair>(2);
 				toSpark.add(new BasicNameValuePair("access_token", sparkToken));
-				toSpark.add(new BasicNameValuePair("time", "1"));
+				toSpark.add(new BasicNameValuePair("time", "10"));
+				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
+				
+				// Execute HTTP Post Request
+				HttpResponse response = httpclient.execute(httppost);
+				
+			} catch (ClientProtocolException e) {
+				// TODO
+			} catch (IOException e) {
+				// TODO
+			}
+		}
+	};
+	
+	View.OnClickListener sparkTurnOff = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			HttpClient httpclient = new DefaultHttpClient(); 
+			HttpPost httppost = new HttpPost(sparkURL + "stopcook");
+			
+			try {
+				// Add data
+				List<NameValuePair> toSpark = new ArrayList<NameValuePair>(1);
+				toSpark.add(new BasicNameValuePair("access_token", sparkToken));
+//				toSpark.add(new BasicNameValuePair("time", "1"));
 				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
 				
 				// Execute HTTP Post Request

@@ -25,7 +25,7 @@ nextWAVE
     - [X] Switch a pin on & off
     - [ ] Control a Screen
 - [ ] Working Android App
-    - [ ] Send Commands to the Spark
+    - [X] Send Commands to the Spark
     - [ ] Send Remaining Cook Time to the Pebble
     - [X] Scan Barcodes
     - [X] Communicate with FireBase Backend
