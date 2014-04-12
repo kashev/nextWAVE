@@ -62,16 +62,16 @@ public class MicrowaveClientActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//    	super.onActivityResult(requestCode, resultCode, intent);
-//    	
-//    	IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-//    	
-//    	if (scanningResult != null) {
-//    		Toast toast = Toast.makeText(getApplicationContext(), /*scanningResult.getContents()*/ "Activity", Toast.LENGTH_SHORT);
-//    		toast.show();
-//    	}
-//    	
-//    }
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    	super.onActivityResult(requestCode, resultCode, intent);
+    	
+    	IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+    	
+    	if (scanningResult != null) {
+    		TextView barcodeTextView = (TextView)findViewById(R.id.scan_content);
+    		barcodeTextView.setText(scanningResult.getContents());
+    	}
+    	
+    }
     
 }
