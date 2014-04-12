@@ -27,7 +27,7 @@ nextWAVE
 - [ ] Working Android App
     - [ ] Send Commands to the Spark
     - [ ] Send Remaining Cook Time to the Pebble
-    - [ ] Scan Barcodes
+    - [X] Scan Barcodes
     - [X] Communicate with FireBase Backend
     - [ ] Facebook Login
 - [ ] Pebble App
