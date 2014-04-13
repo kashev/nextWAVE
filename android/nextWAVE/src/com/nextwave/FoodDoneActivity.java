@@ -162,7 +162,10 @@ public class FoodDoneActivity extends Activity {
 			            	{
 				            	if (productNameDB.toLowerCase().contains(productName.toLowerCase()))
 				            	{
-				            		child.getRef().child("time").setValue(cookingTimeDB + adjustFlag*spinnerDiff);
+				            		long finalCookTime = cookingTimeDB + adjustFlag*spinnerDiff;
+				            		if (finalCookTime < 0)
+				            			finalCookTime = 0;
+				            		child.getRef().child("time").setValue(finalCookTime);
 		                    		break;
 				            	}
 			            	} 
@@ -170,7 +173,10 @@ public class FoodDoneActivity extends Activity {
 			            	{
 			            		if (barcode == barcodeDB)
 			            		{
-			            			child.getRef().child("time").setValue(cookingTimeDB + adjustFlag*spinnerDiff);
+			            			long finalCookTime = cookingTimeDB + adjustFlag*spinnerDiff;
+				            		if (finalCookTime < 0)
+				            			finalCookTime = 0;
+			            			child.getRef().child("time").setValue(finalCookTime);
 			            			break;
 			            		}
 			            	}
