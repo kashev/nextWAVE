@@ -13,6 +13,9 @@ nextWAVE
 
 [**nextWAVE**](http://kashev.github.io/nextWAVE/) is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
 
+nextWAVE solves the 'problem' of not knowing how long to microwave your food. We built an Android app that allows you to scan barcodes, and look up cook times in a [Firebase Database](https://www.firebase.com/). The app can be launched using an NFC tag. Then, the app can turn on the microwave via wifi using a [Spark Core Microcontroller](https://www.spark.io/). While your food is cooking, the cook time is displayed on a [Pebble Smartwatch App](https://getpebble.com/). Finally, when the food is done cooking, it will open itself and play ["Funky Town"](https://www.youtube.com/watch?v=HRDc31Co8sI).
+
+You can view all the source code [here](https://github.com/kashev/nextWAVE) and see a video of the working microwave [here](https://www.youtube.com/watch?v=uaeWA7mdfUo).
 
 ## TODO
 
