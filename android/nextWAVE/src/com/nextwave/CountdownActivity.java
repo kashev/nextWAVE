@@ -143,6 +143,19 @@ public class CountdownActivity extends Activity {
 			        Log.d("Pebble", "Launched?");
 				}
 				
+				timer = new CountDownTimer(1000*cookingTime, 1000) {
+					
+					TextView countdownTextView = (TextView) rootView.findViewById(R.id.countdown_timer);
+					
+				     public void onTick(long millisUntilFinished) {
+				    	 countdownTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
+				     }
+
+				     public void onFinish() {
+				         countdownTextView.setText("done!");
+				     }
+				  }.start();
+				
 			} catch (ClientProtocolException e) {
 				// TODO
 			} catch (IOException e) {
@@ -151,19 +164,6 @@ public class CountdownActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} */
-			
-			timer = new CountDownTimer(1000*cookingTime, 1000) {
-				
-				TextView countdownTextView = (TextView) rootView.findViewById(R.id.countdown_timer);
-				
-			     public void onTick(long millisUntilFinished) {
-			    	 countdownTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
-			     }
-
-			     public void onFinish() {
-			         countdownTextView.setText("done!");
-			     }
-			  }.start();
 			  
 			  Button killButton = (Button) rootView.findViewById(R.id.button_kill);
 			  killButton.setOnClickListener(new View.OnClickListener() {

@@ -92,7 +92,13 @@ public class MicrowaveClientFragment extends Fragment {
 		
 		@Override
 		public void onClick(View v) {
-			
+			Intent inputToDbIntent = new Intent(mainActivity, StartFromDbActivity.class);
+        	Bundle extras = new Bundle();
+        	extras.putString("NW_PRODUCT_NAME", "Custom Item");
+        	extras.putLong("NW_BARCODE", -1);
+        	extras.putLong("NW_COOKING_TIME", 0);
+        	inputToDbIntent.putExtras(extras);
+        	startActivity(inputToDbIntent);
 		}
 	};
 	

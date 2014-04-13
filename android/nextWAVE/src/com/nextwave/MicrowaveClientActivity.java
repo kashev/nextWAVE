@@ -114,7 +114,7 @@ public class MicrowaveClientActivity extends ActionBarActivity {
                     	Bundle extras = new Bundle();
                     	extras.putString("NW_PRODUCT_NAME", null);
                     	extras.putLong("NW_BARCODE", scannedBarcode);
-                    	extras.putLong("NW_COOKING_TIME", -1);
+                    	extras.putLong("NW_COOKING_TIME", 0);
                     	inputToDbIntent.putExtras(extras);
                     	startActivity(inputToDbIntent);
                     }
