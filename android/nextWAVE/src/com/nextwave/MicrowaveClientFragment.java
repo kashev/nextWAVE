@@ -72,6 +72,9 @@ public class MicrowaveClientFragment extends Fragment {
         Button scanButton = (Button) rootView.findViewById(R.id.button_scan);
         scanButton.setOnClickListener(barcodeScan);
         
+        Button noBarcodeButton = (Button) rootView.findViewById(R.id.button_no_barcode);
+        noBarcodeButton.setOnClickListener(noBarcodeLaunch);
+        
         Button customButton = (Button) rootView.findViewById(R.id.button_custom_time);
         customButton.setOnClickListener(customTimeLaunch);
        
@@ -88,17 +91,26 @@ public class MicrowaveClientFragment extends Fragment {
 		}
 	};
 	
+	View.OnClickListener noBarcodeLaunch = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent searchDbIntent = new Intent(mainActivity, SearchDbActivity.class);
+			startActivity(searchDbIntent);
+		}
+	};
+	
 	View.OnClickListener customTimeLaunch = new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
-			Intent inputToDbIntent = new Intent(mainActivity, StartFromDbActivity.class);
+			Intent startFromDbIntent = new Intent(mainActivity, StartFromDbActivity.class);
         	Bundle extras = new Bundle();
         	extras.putString("NW_PRODUCT_NAME", "Custom Item");
         	extras.putLong("NW_BARCODE", -1);
         	extras.putLong("NW_COOKING_TIME", 0);
-        	inputToDbIntent.putExtras(extras);
-        	startActivity(inputToDbIntent);
+        	startFromDbIntent.putExtras(extras);
+        	startActivity(startFromDbIntent);
 		}
 	};
 	
