@@ -17,6 +17,17 @@ nextWAVE solves the 'problem' of not knowing how long to microwave your food. We
 
 You can view all the source code [here](https://github.com/kashev/nextWAVE) and see a video of the working microwave [here](https://www.youtube.com/watch?v=uaeWA7mdfUo).
 
+## Thanks
+
+Team Brady Rocks built nextWAVE in 36 hours.
+
+- **Dario Aranguiz** - Android App, DB Interaction
+- **Kashev Dalmia** - Pebble App, Website, Android Layout
+- **Brady Salz** - Hardware, Hardware, Hardware, Embedded Software
+- **Ahmed Suhyl** - Embedded Software, Test, Hardware
+
+Special thanks to **Isaac DuPree** for designing the logo.
+
 ## TODO
 
 - [X] Working Microwave
