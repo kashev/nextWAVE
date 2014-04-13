@@ -1,7 +1,7 @@
 nextWAVE
 =========
 
-    [nextWAVE](kashev.github.io/nextWAVE/)
+    nextWAVE
     A project for HackIllinois 2014
 
     Dario Aranguiz :: aranguizdario@gmail.com
@@ -11,7 +11,7 @@ nextWAVE
 
 ## About
 
-**nextWAVE** is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
+[**nextWAVE**](kashev.github.io/nextWAVE/) is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
 
 
 ## TODO
