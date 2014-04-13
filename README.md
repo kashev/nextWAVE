@@ -26,7 +26,7 @@ nextWAVE
     - [ ] Control a Screen
 - [ ] Working Android App
     - [X] Send Commands to the Spark
-    - [ ] Send Remaining Cook Time to the Pebble
+    - [X] Send Remaining Cook Time to the Pebble
     - [X] Scan Barcodes
     - [X] Communicate with FireBase Backend
     - [ ] Facebook Login
