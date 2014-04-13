@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="19" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -23,6 +23,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.nextwave.MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.nextwave.StartFromDbActivity"
+            android:label="@string/title_activity_start_from_db" >
+        </activity>
+        <activity
+            android:name="com.nextwave.CountdownActivity"
+            android:label="@string/title_activity_countdown" >
+        </activity>
+        <activity
+            android:name="com.nextwave.FoodDoneActivity"
+            android:label="@string/title_activity_food_done" >
+        </activity>
+        <activity
+            android:name="com.nextwave.SearchDbActivity"
+            android:label="@string/title_activity_search_db" >
+        </activity>
+        <activity
+            android:name="com.nextwave.InputToDbActivity"
+            android:label="@string/title_activity_input_to_db" >
         </activity>
     </application>
 
