@@ -2,10 +2,24 @@
 <resources>
 
     <string name="app_name">nextWAVE</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="button_send">Send to DB</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <!-- MicrowaveClient -->
     <string name="button_scan">Scan Barcode</string>
+    <string name="button_no_barcode">No Barcode?</string>
+    <string name="button_custom_time">Custom Cooking Time</string>
+    
+    <!-- StartFromDb -->
+    
+    <!-- SearchDb -->
+    
+    <!-- InputToDb -->
+    
+    <!-- FoodDone -->
+    
+    <!-- Countdown -->
+    
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_start_from_db">StartFromDbActivity</string>
     <string name="title_activity_countdown">CountdownActivity</string>

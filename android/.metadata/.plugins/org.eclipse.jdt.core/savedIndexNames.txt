@@ -3,7 +3,6 @@ INDEX VERSION 1.126+C:\Users\Dario\Documents\GitHub\nextwave\android\.metadata\.
 3294132898.index
 3012334615.index
 3331038869.index
-1215701381.index
 708507338.index
 1237936907.index
 1284074322.index

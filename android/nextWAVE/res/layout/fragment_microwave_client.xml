@@ -8,58 +8,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.nextwave.MicrowaveClientActivity$PlaceholderFragment" >
 
-    <EditText android:id="@+id/food_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Food Name" />
-    
-    <EditText android:id ="@+id/barcode"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:hint="Barcode"
-        android:layout_below="@+id/food_name" />
-    
-    <EditText android:id ="@+id/cooking_time"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:hint="Cooking Time"
-        android:layout_below="@+id/barcode" /> 
-         
-    <Button android:id="@+id/button_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_send" 
-        android:layout_below="@+id/cooking_time" />
-    
-    <TextView android:id="@+id/scan_content"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:textIsSelectable="true"
-	    android:layout_below="@id/button_send" />
     
     <Button android:id="@+id/button_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_scan"
-        android:layout_below="@+id/scan_content" />
+        android:text="@string/button_scan" />
     
-    <TextView android:id="@+id/retrieved_cooking_time"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:textIsSelectable="true"
-	    android:layout_below="@id/button_scan" />
-    
-    <Button android:id="@+id/button_spark_on"
+    <Button android:id="@+id/button_no_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Turn Spark On"
-        android:layout_below="@+id/retrieved_cooking_time" />
-
-    <Button android:id="@+id/button_spark_off"
+        android:text="@string/button_no_barcode"
+        android:layout_below="@+id/button_scan" />
+    
+    <Button android:id="@+id/button_custom_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Turn Spark Off"
-        android:layout_below="@+id/button_spark_on" />
+        android:text="@string/button_custom_time"
+        android:layout_below="@+id/button_no_barcode" />	
     
     
 </RelativeLayout>

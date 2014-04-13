@@ -1,23 +1,32 @@
 package com.nextwave;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.TextView;
 
 public class StartFromDbActivity extends Activity {
 
+	String productName;
+	long cookingTime;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start_from_db);
 
+		// Get the message from the intent
+		Intent intent = getIntent();
+		Bundle extras = intent.getExtras();
+		productName = extras.getString("NW_PRODUCT_NAME");
+		cookingTime = extras.getLong("NW_COOKING_TIME");
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -49,14 +58,26 @@ public class StartFromDbActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		Activity mainActivity;
+		
 		public PlaceholderFragment() {
 		}
-
+		
+		@Override
+	    public void onAttach(Activity activity) {
+	        super.onAttach(activity);
+	        mainActivity = activity;
+	    }
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_start_from_db,
 					container, false);
+			
+			TextView textView =(TextView) rootView.findViewById(R.id.product_name);
+			textView.setText("HI");
+					
 			return rootView;
 		}
 	}

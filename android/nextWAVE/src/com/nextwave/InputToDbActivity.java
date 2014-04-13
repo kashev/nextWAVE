@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.os.Build;
 
@@ -60,25 +61,29 @@ public class InputToDbActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_input_to_db,
 					container, false);
+			
+//			Button sendButton = (Button) rootView.findViewById(R.id.button_send);
+//	        sendButton.setOnClickListener(dbSend);
+	        
 			return rootView;
 		}
 		
-		View.OnClickListener dbSend = new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				EditText foodNameInput = (EditText) mainView.findViewById(R.id.food_name);
-				EditText barcodeInput = (EditText) mainView.findViewById(R.id.barcode);
-				EditText cookingTimeInput = (EditText) mainView.findViewById(R.id.cooking_time);
-				
-				String foodName = foodNameInput.getText().toString();
-				Long barcode = Long.parseLong(barcodeInput.getText().toString());
-				Long cookingTime = Long.parseLong(cookingTimeInput.getText().toString());
-				
-				Firebase kitKat = new Firebase("https://nextwave.firebaseio.com/foods");
-				kitKat.child(foodName).child("barcode").setValue(barcode);
-				kitKat.child(foodName).child("time").setValue(cookingTime);
-			}
-		};
+//		View.OnClickListener dbSend = new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				EditText foodNameInput = (EditText) mainView.findViewById(R.id.food_name);
+//				EditText barcodeInput = (EditText) mainView.findViewById(R.id.barcode);
+//				EditText cookingTimeInput = (EditText) mainView.findViewById(R.id.cooking_time);
+//				
+//				String foodName = foodNameInput.getText().toString();
+//				Long barcode = Long.parseLong(barcodeInput.getText().toString());
+//				Long cookingTime = Long.parseLong(cookingTimeInput.getText().toString());
+//				
+//				Firebase kitKat = new Firebase("https://nextwave.firebaseio.com/foods");
+//				kitKat.child(foodName).child("barcode").setValue(barcode);
+//				kitKat.child(foodName).child("time").setValue(cookingTime);
+//			}
+//		};
 		
 	}
 
