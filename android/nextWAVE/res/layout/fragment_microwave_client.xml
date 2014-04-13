@@ -8,23 +8,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.nextwave.MicrowaveClientActivity$PlaceholderFragment" >
 
+    <ImageView
+        android:id="@+id/applogo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:gravity="top"
+        android:scaleType="fitStart"
+        android:antialias="true"
+        android:src="@drawable/applogo" />
     
     <Button android:id="@+id/button_scan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="64dp"
+        android:layout_below="@+id/applogo"
         android:text="@string/button_scan" />
     
     <Button android:id="@+id/button_no_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_no_barcode"
+        android:layout_alignBottom="@+id/button_custom_time"
         android:layout_below="@+id/button_scan" />
     
     <Button android:id="@+id/button_custom_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_custom_time"
-        android:layout_below="@+id/button_no_barcode" />	
-    
+        android:layout_below="@+id/button_scan"
+        android:layout_toRightOf="@+id/button_no_barcode"
+        android:text="@string/button_custom_time" />
     
 </RelativeLayout>

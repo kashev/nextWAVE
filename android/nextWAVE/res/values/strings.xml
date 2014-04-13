@@ -11,8 +11,11 @@
     <string name="button_custom_time">Custom Cooking Time</string>
     
     <!-- StartFromDb -->
+    <string name="startCookingButton">Start Cooking!</string>
     
     <!-- SearchDb -->
+    <string name="searchdb_searchprompt">Search Term : </string>
+    <string name="searchdb_search">Search</string>
     
     <!-- InputToDb -->
     <string name="inputdb_foodname">Food Name : </string>
