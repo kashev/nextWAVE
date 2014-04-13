@@ -32,11 +32,11 @@
     <string name="countdown_default">00:00</string>
     <string name="countdown_stopbutton">Stop Early</string>
     
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_start_from_db">StartFromDbActivity</string>
-    <string name="title_activity_countdown">CountdownActivity</string>
-    <string name="title_activity_food_done">FoodDoneActivity</string>
-    <string name="title_activity_search_db">SearchDbActivity</string>
-    <string name="title_activity_input_to_db">InputToDbActivity</string>
+    <string name="title_activity_main">nextWAVE</string>
+    <string name="title_activity_start_from_db">Found a Food</string>
+    <string name="title_activity_countdown">Food Cooking</string>
+    <string name="title_activity_food_done">Food Done!</string>
+    <string name="title_activity_search_db">Search for Food</string>
+    <string name="title_activity_input_to_db">Add Food to Database</string>
 
 </resources>
