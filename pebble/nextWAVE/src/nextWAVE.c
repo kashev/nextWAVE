@@ -216,10 +216,12 @@ sync_tuple_changed_callback (const uint32_t key,
     {
         case NEXTWAVE_STATE_KEY:
             render_state(new_tuple->value->uint8);
+            current_state = new_tuple->value->uint8;
             APP_LOG(APP_LOG_LEVEL_DEBUG, "RENDERED THE STATE: %u", new_tuple->value->uint8);
             break;
         case NEXTWAVE_TIME_KEY:
             render_time(new_tuple->value->uint32);
+            time_left = new_tuple->value->uint32;
             APP_LOG(APP_LOG_LEVEL_DEBUG, "RENDERED THE TIME: %u", (uint) new_tuple->value->uint32);
             break;
         default:
@@ -263,10 +265,10 @@ window_load (Window *window)
     layer_add_child(window_layer, text_layer_get_layer(logo_layer));
     layer_add_child(window_layer, text_layer_get_layer(state_layer));
 
-    // /*
-    //  * Set Second Tick Handler
-    //  */
-    // tick_timer_service_subscribe(SECOND_UNIT, &handle_second_tick);
+    /*
+     * Set Second Tick Handler
+     */
+    tick_timer_service_subscribe(SECOND_UNIT, &handle_second_tick);
 
     /*
      * App Sync
