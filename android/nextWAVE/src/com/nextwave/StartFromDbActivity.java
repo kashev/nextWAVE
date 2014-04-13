@@ -1,5 +1,19 @@
 package com.nextwave;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -20,6 +34,16 @@ public class StartFromDbActivity extends Activity {
 	long barcode;
 	long cookingTime;
 	
+	static String sparkURL = "https://api.spark.io/v1/devices/48ff70065067555028111587/";
+	static String sparkToken = "4348526a1c0932c678d6e971ce456b9d2ea4a1f5";
+	
+	private final static UUID PEBBLE_APP_UUID = UUID.fromString("f798b9e5-d4e9-4b8b-b88d-30d2707d5dc7");
+	private final static int STATE_KEY = 0;
+	private final static int TIME_KEY = 1;
+	private final static int PEBBLE_READY = 0;
+	private final static int PEBBLE_COOKING = 1;
+	private final static int PEBBLE_DONE = 2;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +60,29 @@ public class StartFromDbActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		HttpClient httpclient = new DefaultHttpClient(); 
+		HttpPost httppost = new HttpPost(sparkURL + "opendoor");
+		
+		try {
+			// Add data
+			List<NameValuePair> toSpark = new ArrayList<NameValuePair>(1);
+			toSpark.add(new BasicNameValuePair("access_token", sparkToken));
+			httppost.setEntity(new UrlEncodedFormEntity(toSpark));
+			
+			// Execute HTTP Post Request
+			// This is blocking!
+			HttpResponse response = httpclient.execute(httppost);
+			
+			
+		} catch (ClientProtocolException e) {
+			// TODO
+		} catch (IOException e) {
+			// TODO
+		} /*catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} */
 	}
 
 	@Override

@@ -153,6 +153,13 @@ public class CountdownActivity extends Activity {
 
 				     public void onFinish() {
 				         countdownTextView.setText("done!");
+				         Intent foodDoneIntent = new Intent(mainActivity, FoodDoneActivity.class);
+				         Bundle extras = new Bundle();
+				         extras.putString("NW_PRODUCT_NAME", productName);
+				         extras.putLong("NW_BARCODE", barcode);
+				         extras.putLong("NW_COOKING_TIME", cookingTime);
+				         foodDoneIntent.putExtras(extras);
+				         startActivity(foodDoneIntent);
 				     }
 				  }.start();
 				
@@ -203,6 +210,14 @@ public class CountdownActivity extends Activity {
 							e.printStackTrace();
 						} */
 						timer.cancel();
+						
+						Intent foodDoneIntent = new Intent(mainActivity, FoodDoneActivity.class);
+			        	Bundle extras = new Bundle();
+			        	extras.putString("NW_PRODUCT_NAME", productName);
+			        	extras.putLong("NW_BARCODE", barcode);
+			        	extras.putLong("NW_COOKING_TIME", cookingTime);
+			        	foodDoneIntent.putExtras(extras);
+			        	startActivity(foodDoneIntent);
 				 }
 			  });
 			
