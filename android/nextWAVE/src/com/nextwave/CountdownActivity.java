@@ -123,7 +123,7 @@ public class CountdownActivity extends Activity {
 				// Add data
 				List<NameValuePair> toSpark = new ArrayList<NameValuePair>(2);
 				toSpark.add(new BasicNameValuePair("access_token", sparkToken));
-				toSpark.add(new BasicNameValuePair("time", "10"));
+				toSpark.add(new BasicNameValuePair("time", String.valueOf(cookingTime)));
 				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
 				
 				// Execute HTTP Post Request

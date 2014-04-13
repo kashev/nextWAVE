@@ -96,6 +96,7 @@ public class SearchDbActivity extends Activity {
 			    	@Override
 			    	public void onDataChange(DataSnapshot snapshot) {
 			    		String productNameInput = ((EditText) rootView.findViewById(R.id.search_field)).getText().toString();
+			    		productNameInput = productNameInput.trim();
 			    		
 			    		itemFound = false;
 			            for (DataSnapshot child : snapshot.getChildren()) {
