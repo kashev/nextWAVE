@@ -54,6 +54,8 @@ typedef enum {
     COOKING = 0x01,
     DONE = 0x02
 } nextWaveState;
+/* STORED STATE */
+static nextWaveState current_state = READY;
 
 /* Frame to create text layer size */
 static GRect logoFrame = {
@@ -94,6 +96,7 @@ static GRect statusFrame = {
  */
 /* Stored Time */
 static char time_text[] = "00:00";
+static uint32_t time_left = 0;
 static void
 render_time (uint32_t s)
 {
@@ -159,26 +162,29 @@ render_state (nextWaveState s)
 // }
 
 
-// /*
-//  * TIME HANDLING
-//  */
-// static void
-// handle_second_tick (struct tm * tick_time, TimeUnits units_changed)
-// {
-//     if (seconds_left != 0)
-//     {
-//         seconds_left--;
-//     }
-//     if (seconds_left == 0)
-//     {
-//         vibes_long_pulse();
-//         state = DONE;
-//     }
-// 
-//     render_state(state);
-//     render_time(seconds_left);
-//     text_layer_set_text(time_layer, time_text);
-// }
+/*
+ * TIME HANDLING
+ */
+static void
+handle_second_tick (struct tm * tick_time, TimeUnits units_changed)
+{
+    if (current_state == COOKING)
+    {
+        if (time_left != 0)
+        {
+            time_left--;
+        }
+        if (time_left == 0)
+        {
+            vibes_long_pulse();
+            current_state = DONE;
+        }
+
+        render_state(current_state);
+        render_time(time_left);
+        text_layer_set_text(time_layer, time_text); 
+    }
+}
 
 
 /*
@@ -269,6 +275,7 @@ window_load (Window *window)
         TupletInteger(NEXTWAVE_STATE_KEY, (uint8_t) READY),
         TupletInteger(NEXTWAVE_TIME_KEY, (uint8_t) 0),
     };
+
     app_sync_init(&sync,
                   sync_buffer,
                   sizeof(sync_buffer),
