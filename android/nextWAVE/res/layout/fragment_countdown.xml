@@ -9,14 +9,18 @@
     tools:context="com.nextwave.CountdownActivity$PlaceholderFragment" >
 
     <TextView android:id="@+id/countdown_timer"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:textSize="72sp"
+        android:gravity="center"
+        android:text="@string/countdown_default"
+        android:paddingBottom="16dp"
+        />
     
     <Button android:id="@+id/button_kill"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/countdown_timer"
-        android:text="Stop Early!"/>
+        android:text="@string/countdown_stopbutton"/>
 
 </RelativeLayout>
