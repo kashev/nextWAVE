@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.NumberPicker;
+import android.widget.NumberPicker.Formatter;
 import android.widget.TextView;
 
 public class StartFromDbActivity extends Activity {
@@ -75,11 +77,42 @@ public class StartFromDbActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_start_from_db,
 					container, false);
 			
+			StartFromDbActivity parent = (StartFromDbActivity)mainActivity;
+			String productName = parent.productName;
+			
 			TextView textView =(TextView) rootView.findViewById(R.id.product_name);
-			textView.setText("HI");
+			textView.setText(productName);
+			
+			NumberPicker minuteSpinner = (NumberPicker) rootView.findViewById(R.id.cooking_time_minutes);
+			minuteSpinner.setMinValue(0);
+			minuteSpinner.setMaxValue(99);
+			minuteSpinner.setOnLongPressUpdateInterval(100);
+			minuteSpinner.setFormatter(TWO_DIGIT_FORMATTER);
+//			minuteSpinner.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//				public void onValueChange(NumberPicker spinner, int oldVal, int newVal) {
+//					onTimeChanged();
+//				}
+//			})
+			
+			NumberPicker secondSpinner = (NumberPicker) rootView.findViewById(R.id.cooking_time_seconds);
+			secondSpinner.setMinValue(0);
+			secondSpinner.setMaxValue(59);
+			secondSpinner.setOnLongPressUpdateInterval(100);
+						
+			
 					
 			return rootView;
 		}
+		
+		public static final NumberPicker.Formatter TWO_DIGIT_FORMATTER =
+	    		new Formatter() {
+
+				@Override
+				public String format(int value) {
+				// TODO Auto-generated method stub
+				return String.format("%02d", value);
+			}
+		};
 	}
 
 }

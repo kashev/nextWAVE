@@ -12,5 +12,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
+    
+    <NumberPicker android:id="@+id/cooking_time_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_name" />
+    
+    <NumberPicker android:id="@+id/cooking_time_seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_name" 
+        android:layout_toRightOf="@+id/cooking_time_minutes" />        
 
 </RelativeLayout>
