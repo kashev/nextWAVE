@@ -71,6 +71,9 @@ public class MicrowaveClientFragment extends Fragment {
         
         Button scanButton = (Button) rootView.findViewById(R.id.button_scan);
         scanButton.setOnClickListener(barcodeScan);
+        
+        Button customButton = (Button) rootView.findViewById(R.id.button_custom_time);
+        customButton.setOnClickListener(customTimeLaunch);
        
         return rootView;
     }
@@ -82,6 +85,14 @@ public class MicrowaveClientFragment extends Fragment {
 		public void onClick(View v) {
 			IntentIntegrator scanIntegrator = new IntentIntegrator(getActivity());
 			scanIntegrator.initiateScan();
+		}
+	};
+	
+	View.OnClickListener customTimeLaunch = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			
 		}
 	};
 	
