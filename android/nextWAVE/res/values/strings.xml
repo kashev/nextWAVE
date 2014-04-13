@@ -23,6 +23,10 @@
     <string name="inputdb_foodprompt">e.g. Leftover Pizza</string>
     
     <!-- FoodDone -->
+    <string name="done_adjusttime">You\'re done! Adjust the cook time for the future?</string>
+    <string name="done_subtracttime">Subtract Time -</string>
+    <string name="done_addtime">Add Time +"</string>
+    <string name="done_done">Done</string>
     
     <!-- Countdown -->
     <string name="countdown_default">00:00</string>
