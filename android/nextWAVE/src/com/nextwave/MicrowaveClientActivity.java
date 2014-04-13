@@ -56,6 +56,14 @@ public class MicrowaveClientActivity extends ActionBarActivity {
     }
     
     @Override
+    protected void onPostResume() {
+    	super.onPostResume();
+    	
+    	// Is this good? Forces the pebble app open when the android app is open
+    	PebbleKit.startAppOnPebble(this, PEBBLE_APP_UUID);
+    }
+    
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.

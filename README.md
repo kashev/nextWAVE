@@ -18,7 +18,7 @@ nextWAVE
 
 - [ ] Working Microwave
     - [X] Manual Switching
-    - [ ] Relay Controlled Switching 
+    - [X] Relay Controlled Switching 
     - [ ] Add NFC Launching Pads
     - [ ] Decorate
 - [ ] Working Spark Core Code
@@ -31,7 +31,7 @@ nextWAVE
     - [X] Communicate with FireBase Backend
     - [ ] Facebook Login
 - [ ] Pebble App
-    - [ ] Get and Display Remaining Cook Time
+    - [X] Get and Display Remaining Cook Time
 - [ ] Website
     - [ ] Looks Nice
     - [ ] Link to Github Code

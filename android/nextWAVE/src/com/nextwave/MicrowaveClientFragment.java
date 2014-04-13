@@ -136,7 +136,7 @@ public class MicrowaveClientFragment extends Fragment {
 //					Thread.sleep(10000);
 					PebbleDictionary data = new PebbleDictionary();
 			        data.addUint8(STATE_KEY, (byte) PEBBLE_COOKING); // 0, 1, 2 for ready, cooking, done
-			        data.addUint32(TIME_KEY, (int)200); // time in seconds
+			        data.addUint32(TIME_KEY, (int)10); // time in seconds
 
 			        PebbleKit.sendDataToPebble(mainActivity, PEBBLE_APP_UUID, data);
 			        Log.d("Pebble", "Launched?");
