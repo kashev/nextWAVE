@@ -11,7 +11,7 @@ nextWAVE
 
 ## About
 
-[**nextWAVE**](kashev.github.io/nextWAVE/) is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
+[**nextWAVE**](http://kashev.github.io/nextWAVE/) is a smart microwave built for the hardware hackathon section of [HackIllinois](http://www.hackillinois.org/).
 
 
 ## TODO
