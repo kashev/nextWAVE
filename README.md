@@ -1,7 +1,7 @@
 nextWAVE
 =========
 
-    nextWAVE
+    [nextWAVE](kashev.github.io/nextWAVE/)
     A project for HackIllinois 2014
 
     Dario Aranguiz :: aranguizdario@gmail.com
