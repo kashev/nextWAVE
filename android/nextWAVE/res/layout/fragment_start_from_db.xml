@@ -11,23 +11,52 @@
     <TextView android:id="@+id/product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_toEndOf="@+id/foodSelectLabel"
+        android:layout_alignParentTop="true"
+		android:paddingLeft="5dp"
+        android:text="@string/hello_world"
+        android:textStyle="bold" 
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     
-    <NumberPicker android:id="@+id/cooking_time_minutes"
+    <TextView
+        android:id="@+id/foodSelectLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/product_name" />
-    
-    <NumberPicker android:id="@+id/cooking_time_seconds"
-        android:layout_width="wrap_content"
+        android:text="@string/inputdb_foodname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/product_name" 
-        android:layout_toRightOf="@+id/cooking_time_minutes" />
+        android:layout_below="@+id/foodSelectLabel"
+        android:gravity="center"
+        android:id="@+id/pickerLayout" >
+	    
+	    <NumberPicker android:id="@+id/cooking_time_minutes"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="16dp"
+	        android:layout_marginRight="16dp"
+	        android:gravity="center"
+	        android:padding="16dp" />
+	    
+	    <NumberPicker android:id="@+id/cooking_time_seconds"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="16dp"
+	        android:layout_marginRight="16dp"
+	        android:gravity="center"
+			android:padding="16dp" />
+	</LinearLayout>
     
     <Button android:id="@+id/start_cook"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cooking_time_minutes"
+        android:layout_below="@+id/pickerLayout"
         android:text="Start Cooking!" />
 
 </RelativeLayout>

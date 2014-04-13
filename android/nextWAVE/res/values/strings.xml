@@ -15,7 +15,7 @@
     <!-- SearchDb -->
     
     <!-- InputToDb -->
-    <string name="inputdb_foodname">Food Name</string>
+    <string name="inputdb_foodname">Food Name : </string>
     <string name="inputdb_cooktime">Cook Time</string>
     <string name="inputdb_foodprompt">e.g. Leftover Pizza</string>
     
