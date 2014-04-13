@@ -16,11 +16,11 @@ nextWAVE
 
 ## TODO
 
-- [ ] Working Microwave
+- [X] Working Microwave
     - [X] Manual Switching
     - [X] Relay Controlled Switching 
-    - [ ] Add NFC Launching Pads
-    - [ ] Decorate
+    - [X] Add NFC Launching Pads
+    - [X] Decorate
 - [ ] Working Spark Core Code
     - [X] Switch a pin on & off
     - [ ] Control a Screen
@@ -33,6 +33,6 @@ nextWAVE
 - [ ] Pebble App
     - [X] Get and Display Remaining Cook Time
 - [ ] Website
-    - [ ] Looks Nice
-    - [ ] Link to Github Code
+    - [X] Looks Nice
+    - [X] Link to Github Code
     - [ ] Food Stream
