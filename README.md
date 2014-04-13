@@ -30,7 +30,7 @@ nextWAVE
     - [X] Scan Barcodes
     - [X] Communicate with FireBase Backend
     - [ ] Facebook Login
-- [ ] Pebble App
+- [X] Pebble App
     - [X] Get and Display Remaining Cook Time
 - [ ] Website
     - [X] Looks Nice
