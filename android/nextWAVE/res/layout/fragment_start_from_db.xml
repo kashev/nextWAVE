@@ -22,6 +22,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_name" 
-        android:layout_toRightOf="@+id/cooking_time_minutes" />        
+        android:layout_toRightOf="@+id/cooking_time_minutes" />
+    
+    <Button android:id="@+id/start_cook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cooking_time_minutes"
+        android:text="Start Cooking!" />
 
 </RelativeLayout>

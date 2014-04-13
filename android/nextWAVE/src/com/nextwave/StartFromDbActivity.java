@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.NumberPicker.Formatter;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 public class StartFromDbActivity extends Activity {
 
 	String productName;
+	long barcode;
 	long cookingTime;
 	
 	@Override
@@ -27,6 +29,7 @@ public class StartFromDbActivity extends Activity {
 		Intent intent = getIntent();
 		Bundle extras = intent.getExtras();
 		productName = extras.getString("NW_PRODUCT_NAME");
+		barcode = extras.getLong("NW_BARCODE");
 		cookingTime = extras.getLong("NW_COOKING_TIME");
 		
 		if (savedInstanceState == null) {
@@ -78,7 +81,9 @@ public class StartFromDbActivity extends Activity {
 					container, false);
 			
 			StartFromDbActivity parent = (StartFromDbActivity)mainActivity;
-			String productName = parent.productName;
+			final String productName = parent.productName;
+			final long barcode = parent.barcode;
+			final long cookingTime = parent.cookingTime;
 			
 			TextView textView =(TextView) rootView.findViewById(R.id.product_name);
 			textView.setText(productName);
@@ -88,17 +93,34 @@ public class StartFromDbActivity extends Activity {
 			minuteSpinner.setMaxValue(99);
 			minuteSpinner.setOnLongPressUpdateInterval(100);
 			minuteSpinner.setFormatter(TWO_DIGIT_FORMATTER);
-//			minuteSpinner.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-//				public void onValueChange(NumberPicker spinner, int oldVal, int newVal) {
+			minuteSpinner.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+				public void onValueChange(NumberPicker spinner, int oldVal, int newVal) {
 //					onTimeChanged();
-//				}
-//			})
+					spinner.setValue(newVal);
+				}
+			});
 			
 			NumberPicker secondSpinner = (NumberPicker) rootView.findViewById(R.id.cooking_time_seconds);
 			secondSpinner.setMinValue(0);
 			secondSpinner.setMaxValue(59);
 			secondSpinner.setOnLongPressUpdateInterval(100);
+			secondSpinner.setFormatter(TWO_DIGIT_FORMATTER);
 						
+	        Button startCookButton = (Button) rootView.findViewById(R.id.start_cook);
+	        startCookButton.setOnClickListener(new View.OnClickListener() {
+	        	@Override
+	        	public void onClick(View v) {
+	        		// Send to countdown
+	        		
+	        		Intent countdownIntent = new Intent(mainActivity, CountdownActivity.class);
+            		Bundle extras = new Bundle();
+            		extras.putString("NW_PRODUCT_NAME", productName);
+            		extras.putLong("NW_BARCODE", barcode);
+            		extras.putLong("NW_COOKING_TIME", cookingTime);
+            		countdownIntent.putExtras(extras);
+            		startActivity(countdownIntent);
+	        	}
+	        });
 			
 					
 			return rootView;
