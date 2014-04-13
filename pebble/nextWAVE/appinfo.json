@@ -6,7 +6,8 @@
   "versionCode": 1,
   "versionLabel": "1.0.0",
   "watchapp": {
-    "watchface": false
+    "watchface": false,
+    "only_shown_on_communication": true
   },
   "appKeys": {
     "dummy": 0

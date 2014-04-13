@@ -177,6 +177,8 @@ handle_second_tick (struct tm * tick_time, TimeUnits units_changed)
         if (time_left == 0)
         {
             vibes_long_pulse();
+            vibes_long_pulse();
+            vibes_long_pulse();
             current_state = DONE;
         }
 
