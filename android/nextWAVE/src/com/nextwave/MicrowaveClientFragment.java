@@ -34,6 +34,7 @@ import com.google.zxing.integration.android.*;
 
 import com.getpebble.*;
 import com.getpebble.android.kit.PebbleKit;
+import com.getpebble.android.kit.util.PebbleDictionary;
 
 
 public class MicrowaveClientFragment extends Fragment {
@@ -46,6 +47,11 @@ public class MicrowaveClientFragment extends Fragment {
 	String sparkToken = "4348526a1c0932c678d6e971ce456b9d2ea4a1f5";
 	
 	private final static UUID PEBBLE_APP_UUID = UUID.fromString("f798b9e5-d4e9-4b8b-b88d-30d2707d5dc7");
+	private final static int STATE_KEY = 0;
+	private final static int TIME_KEY = 1;
+	private final static int PEBBLE_READY = 0;
+	private final static int PEBBLE_COOKING = 1;
+	private final static int PEBBLE_DONE = 2;
 	
     public MicrowaveClientFragment() {
     }
@@ -124,14 +130,26 @@ public class MicrowaveClientFragment extends Fragment {
 				
 				// Talk to pebble yo
 				if (PebbleKit.isWatchConnected(mainActivity)) {
+					// Should already be started, eh. 
 					PebbleKit.startAppOnPebble(mainActivity, PEBBLE_APP_UUID);
+					
+//					Thread.sleep(10000);
+					PebbleDictionary data = new PebbleDictionary();
+			        data.addUint8(STATE_KEY, (byte) PEBBLE_COOKING); // 0, 1, 2 for ready, cooking, done
+			        data.addUint32(TIME_KEY, (int)200); // time in seconds
+
+			        PebbleKit.sendDataToPebble(mainActivity, PEBBLE_APP_UUID, data);
+			        Log.d("Pebble", "Launched?");
 				}
 				
 			} catch (ClientProtocolException e) {
 				// TODO
 			} catch (IOException e) {
 				// TODO
-			}
+			} /*catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} */
 		}
 	};
 	

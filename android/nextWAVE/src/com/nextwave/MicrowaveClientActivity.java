@@ -1,6 +1,7 @@
 package com.nextwave;
 
 import java.util.Map;
+import java.util.UUID;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -25,12 +26,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
+
+import com.getpebble.android.kit.PebbleKit;
 import com.google.zxing.*;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class MicrowaveClientActivity extends ActionBarActivity {
 
+	private final static UUID PEBBLE_APP_UUID = UUID.fromString("f798b9e5-d4e9-4b8b-b88d-30d2707d5dc7");
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +52,7 @@ public class MicrowaveClientActivity extends ActionBarActivity {
             StrictMode.setThreadPolicy(policy);
         }
         
-        
+        PebbleKit.startAppOnPebble(this, PEBBLE_APP_UUID);
     }
     
     @Override
