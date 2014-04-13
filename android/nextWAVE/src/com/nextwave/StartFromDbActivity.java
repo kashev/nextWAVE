@@ -64,6 +64,8 @@ public class StartFromDbActivity extends Activity {
 	public static class PlaceholderFragment extends Fragment {
 
 		Activity mainActivity;
+		NumberPicker minuteSpinner;
+		NumberPicker secondSpinner;
 		
 		public PlaceholderFragment() {
 		}
@@ -88,23 +90,25 @@ public class StartFromDbActivity extends Activity {
 			TextView textView =(TextView) rootView.findViewById(R.id.product_name);
 			textView.setText(productName);
 			
-			NumberPicker minuteSpinner = (NumberPicker) rootView.findViewById(R.id.cooking_time_minutes);
+			minuteSpinner = (NumberPicker) rootView.findViewById(R.id.cooking_time_minutes);
 			minuteSpinner.setMinValue(0);
 			minuteSpinner.setMaxValue(99);
 			minuteSpinner.setOnLongPressUpdateInterval(100);
 			minuteSpinner.setFormatter(TWO_DIGIT_FORMATTER);
-			minuteSpinner.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-				public void onValueChange(NumberPicker spinner, int oldVal, int newVal) {
-//					onTimeChanged();
-					spinner.setValue(newVal);
-				}
-			});
+			minuteSpinner.setValue((int)cookingTime/60);
+//			minuteSpinner.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//				public void onValueChange(NumberPicker spinner, int oldVal, int newVal) {
+////					onTimeChanged();
+//					spinner.setValue(newVal);
+//				}
+//			});
 			
-			NumberPicker secondSpinner = (NumberPicker) rootView.findViewById(R.id.cooking_time_seconds);
+			secondSpinner = (NumberPicker) rootView.findViewById(R.id.cooking_time_seconds);
 			secondSpinner.setMinValue(0);
 			secondSpinner.setMaxValue(59);
 			secondSpinner.setOnLongPressUpdateInterval(100);
 			secondSpinner.setFormatter(TWO_DIGIT_FORMATTER);
+			secondSpinner.setValue((int)cookingTime%60);
 						
 	        Button startCookButton = (Button) rootView.findViewById(R.id.start_cook);
 	        startCookButton.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +120,7 @@ public class StartFromDbActivity extends Activity {
             		Bundle extras = new Bundle();
             		extras.putString("NW_PRODUCT_NAME", productName);
             		extras.putLong("NW_BARCODE", barcode);
-            		extras.putLong("NW_COOKING_TIME", cookingTime);
+            		extras.putLong("NW_COOKING_TIME", minuteSpinner.getValue()*60 + secondSpinner.getValue());
             		countdownIntent.putExtras(extras);
             		startActivity(countdownIntent);
 	        	}

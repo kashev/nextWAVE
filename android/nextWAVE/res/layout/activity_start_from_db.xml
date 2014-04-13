@@ -7,7 +7,7 @@
     tools:context="com.nextwave.StartFromDbActivity"
     tools:ignore="MergeRootFrame" >
 
-    <TextView
+    <!-- <TextView
         android:id="@+id/foodSelectLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:gravity="center"
         android:layout_below="@+id/foodSelectLabel"
         android:paddingTop="32dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" /> -->
 
 </RelativeLayout>
 
