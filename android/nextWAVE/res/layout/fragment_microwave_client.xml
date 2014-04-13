@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
         android:gravity="top"
-        android:scaleType="fitStart"
+        android:scaleType="centerCrop"
         android:antialias="true"
         android:src="@drawable/applogo" />
     

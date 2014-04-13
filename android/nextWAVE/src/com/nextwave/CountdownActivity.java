@@ -148,7 +148,9 @@ public class CountdownActivity extends Activity {
 					TextView countdownTextView = (TextView) rootView.findViewById(R.id.countdown_timer);
 					
 				     public void onTick(long millisUntilFinished) {
-				    	 countdownTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
+				    	 int minutes = (int) ((millisUntilFinished / 1000) / 60);
+				    	 int seconds = (int) ((millisUntilFinished / 1000) % 60);
+				    	 countdownTextView.setText(String.format("%02d:%02d", minutes, seconds));
 				     }
 
 				     public void onFinish() {
