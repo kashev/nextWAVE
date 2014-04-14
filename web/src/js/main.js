@@ -11,5 +11,5 @@
  */
 
 $(document).ready(function(){
-  /* INTENTIONALLY EMPTY */
+  $('.carousel').carousel();
 });

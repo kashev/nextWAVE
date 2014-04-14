@@ -1,8 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context="com.nextwave.StartFromDbActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" >
+
+    <!-- <TextView
+        android:id="@+id/foodSelectLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/inputdb_foodname"
+        android:layout_alignParentLeft="true"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/foodNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/foodSelectLabel"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/inputdb_foodprompt">
+
+        <requestFocus />
+    </EditText>
+    
+    <TextView
+        android:id="@+id/cookTimeLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/inputdb_cooktime"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:layout_below="@+id/foodSelectLabel"
+        android:paddingTop="32dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> -->
+
+</RelativeLayout>
 

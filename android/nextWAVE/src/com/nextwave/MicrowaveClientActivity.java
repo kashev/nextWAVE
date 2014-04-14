@@ -3,32 +3,20 @@ package com.nextwave;
 import java.util.Map;
 import java.util.UUID;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.getpebble.android.kit.PebbleKit;
-import com.google.zxing.*;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -83,31 +71,52 @@ public class MicrowaveClientActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    String scannedBarcode;
+    long scannedBarcode;
+    boolean itemFound;
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	super.onActivityResult(requestCode, resultCode, intent);
     	
     	IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-    	scannedBarcode = scanningResult.getContents();
     	
+    	itemFound = false;
     	if (scanningResult != null) {
-    		TextView barcodeTextView = (TextView)findViewById(R.id.scan_content);
-    		barcodeTextView.setText(scannedBarcode);
-          
+    		
+    		scannedBarcode = Long.parseLong(scanningResult.getContents());
             Firebase kitKat = new Firebase("https://nextwave.firebaseio.com/foods");
             kitKat.addListenerForSingleValueEvent(new ValueEventListener() {
             	@Override
             	public void onDataChange(DataSnapshot snapshot) {
                     for (DataSnapshot child : snapshot.getChildren()) {
                     	Object value = child.getValue();
+                    	String productName = ((Map)value).get("name").toString();
                     	long barcode = (long)((Map)value).get("barcode");
-                    	if (barcode == Long.parseLong(scannedBarcode))
+                    	long cookingTime = (long)((Map)value).get("time");
+                    	if (barcode == scannedBarcode)
                     	{
-                    		Log.d("cookingTime", ((Map)value).get("time").toString());
-                    		TextView retrievedCookingTime = (TextView)findViewById(R.id.retrieved_cooking_time);
-                    		retrievedCookingTime.setText("Cooking Time from Server: " + ((Map)value).get("time").toString());
+//                    		Log.d("cookingTime", ((Map)value).get("time").toString());
+//                    		Log.d("Name of Scan", ((Map)value).get("name").toString());
+                    		itemFound = true;
+                    		
+                    		Intent startFromDbIntent = new Intent(getApplicationContext(), StartFromDbActivity.class);
+                    		Bundle extras = new Bundle();
+                    		extras.putString("NW_PRODUCT_NAME", productName);
+                    		extras.putLong("NW_BARCODE", barcode);
+                    		extras.putLong("NW_COOKING_TIME", cookingTime);
+                    		startFromDbIntent.putExtras(extras);
+                    		startActivity(startFromDbIntent);
+                    		break;
                     	}
                     		
+                    }
+                    if (itemFound == false) {
+                    	// Item was not found in db, prompt to add new cooking time
+                    	Intent inputToDbIntent = new Intent(getApplicationContext(), InputToDbActivity.class);
+                    	Bundle extras = new Bundle();
+                    	extras.putString("NW_PRODUCT_NAME", null);
+                    	extras.putLong("NW_BARCODE", scannedBarcode);
+                    	extras.putLong("NW_COOKING_TIME", 0);
+                    	inputToDbIntent.putExtras(extras);
+                    	startActivity(inputToDbIntent);
                     }
             	}
             	
@@ -121,8 +130,10 @@ public class MicrowaveClientActivity extends ActionBarActivity {
     				
     			}
             });
-  
-            Log.d("kitkat", kitKat.getName());
+    	}
+    	else {
+    		Toast toast = Toast.makeText(this, "NULL Barcode, try again?", Toast.LENGTH_LONG);
+    		toast.show();
     	}
     	
     }

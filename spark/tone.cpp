@@ -7,8 +7,8 @@
 #define PAUSE		1000000
 
 int funkyTown[11] = {NOTE_BF4, NOTE_BF4, NOTE_AF4, NOTE_BF4, 
-					PAUSE, NOTE_F4, PAUSE, NOTE_F4,
-					NOTE_BF4, NOTE_EF5, NOTE_D5, NOTE_BF4};
+					 PAUSE, NOTE_F4, PAUSE, NOTE_F4,
+					 NOTE_BF4, NOTE_EF5, NOTE_D5, NOTE_BF4};
 
 int16_t audioPin = D6;
 int16_t x,y = 0;

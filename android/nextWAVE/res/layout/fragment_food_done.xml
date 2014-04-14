@@ -8,9 +8,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.nextwave.FoodDoneActivity$PlaceholderFragment" >
 
-    <TextView
+    <TextView android:id="@+id/adjust_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/done_adjusttime"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    
+    <Button android:id="@+id/button_plus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/adjust_time"
+        android:gravity="center"
+        android:text="@string/done_addtime" />
+    <LinearLayout
+        android:id="@+id/numberpicker_adjust_seconds_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_plus"
+        android:layout_weight="1"
+        android:gravity="center" >
+	    <NumberPicker android:id="@+id/numberpicker_adjust_seconds"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:padding="16dp" />
+    </LinearLayout>
+    
+    <Button android:id="@+id/button_minus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberpicker_adjust_seconds_parent"
+        android:gravity="center"
+        android:text="@string/done_subtracttime" />
+    
+    <Button android:id="@+id/button_complete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_minus" 
+        android:text="@string/done_done" />
 
 </RelativeLayout>

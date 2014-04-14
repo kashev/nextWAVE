@@ -165,6 +165,14 @@ render_state (nextWaveState s)
 /*
  * TIME HANDLING
  */
+/* SPECIAL VIBRATIONS */
+// Vibe pattern: ON for 200ms, OFF for 100ms, ON for 400ms:
+static const uint32_t const segments[] = { 500, 300, 500, 300, 500 };
+static VibePattern pat = {
+   .durations = segments,
+   .num_segments = ARRAY_LENGTH(segments),
+ };
+
 static void
 handle_second_tick (struct tm * tick_time, TimeUnits units_changed)
 {
@@ -176,7 +184,7 @@ handle_second_tick (struct tm * tick_time, TimeUnits units_changed)
         }
         if (time_left == 0)
         {
-            vibes_long_pulse();
+            vibes_enqueue_custom_pattern(pat);
             current_state = DONE;
         }
 

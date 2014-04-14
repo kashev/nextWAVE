@@ -69,37 +69,18 @@ public class MicrowaveClientFragment extends Fragment {
     	View rootView = inflater.inflate(R.layout.fragment_microwave_client, container, false);
         mainView = rootView;
         
-        Button sendButton = (Button) rootView.findViewById(R.id.button_send);
-        sendButton.setOnClickListener(dbSend);
-        
         Button scanButton = (Button) rootView.findViewById(R.id.button_scan);
         scanButton.setOnClickListener(barcodeScan);
         
-        Button sparkOnButton = (Button) rootView.findViewById(R.id.button_spark_on);
-        sparkOnButton.setOnClickListener(sparkTurnOn);
+        Button noBarcodeButton = (Button) rootView.findViewById(R.id.button_no_barcode);
+        noBarcodeButton.setOnClickListener(noBarcodeLaunch);
         
-        Button sparkOffButton = (Button) rootView.findViewById(R.id.button_spark_off);
-        sparkOffButton.setOnClickListener(sparkTurnOff);
+        Button customButton = (Button) rootView.findViewById(R.id.button_custom_time);
+        customButton.setOnClickListener(customTimeLaunch);
        
         return rootView;
     }
     
-    View.OnClickListener dbSend = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			EditText foodNameInput = (EditText) mainView.findViewById(R.id.food_name);
-			EditText barcodeInput = (EditText) mainView.findViewById(R.id.barcode);
-			EditText cookingTimeInput = (EditText) mainView.findViewById(R.id.cooking_time);
-			
-			String foodName = foodNameInput.getText().toString();
-			Long barcode = Long.parseLong(barcodeInput.getText().toString());
-			Long cookingTime = Long.parseLong(cookingTimeInput.getText().toString());
-			
-			Firebase kitKat = new Firebase("https://nextwave.firebaseio.com/foods");
-			kitKat.child(foodName).child("barcode").setValue(barcode);
-			kitKat.child(foodName).child("time").setValue(cookingTime);
-		}
-	};
 	
 	View.OnClickListener barcodeScan = new View.OnClickListener() {
 		
@@ -110,71 +91,28 @@ public class MicrowaveClientFragment extends Fragment {
 		}
 	};
 	
-	View.OnClickListener sparkTurnOn = new View.OnClickListener() {
+	View.OnClickListener noBarcodeLaunch = new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
-			HttpClient httpclient = new DefaultHttpClient(); 
-			HttpPost httppost = new HttpPost(sparkURL + "cook");
-			
-			try {
-				// Add data
-				List<NameValuePair> toSpark = new ArrayList<NameValuePair>(2);
-				toSpark.add(new BasicNameValuePair("access_token", sparkToken));
-				toSpark.add(new BasicNameValuePair("time", "10"));
-				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
-				
-				// Execute HTTP Post Request
-				// is this blocking?
-				HttpResponse response = httpclient.execute(httppost);
-				
-				// Talk to pebble yo
-				if (PebbleKit.isWatchConnected(mainActivity)) {
-					// Should already be started, eh. 
-					PebbleKit.startAppOnPebble(mainActivity, PEBBLE_APP_UUID);
-					
-//					Thread.sleep(10000);
-					PebbleDictionary data = new PebbleDictionary();
-			        data.addUint8(STATE_KEY, (byte) PEBBLE_COOKING); // 0, 1, 2 for ready, cooking, done
-			        data.addUint32(TIME_KEY, (int)10); // time in seconds
-
-			        PebbleKit.sendDataToPebble(mainActivity, PEBBLE_APP_UUID, data);
-			        Log.d("Pebble", "Launched?");
-				}
-				
-			} catch (ClientProtocolException e) {
-				// TODO
-			} catch (IOException e) {
-				// TODO
-			} /*catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} */
+			Intent searchDbIntent = new Intent(mainActivity, SearchDbActivity.class);
+			startActivity(searchDbIntent);
 		}
 	};
 	
-	View.OnClickListener sparkTurnOff = new View.OnClickListener() {
+	View.OnClickListener customTimeLaunch = new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
-			HttpClient httpclient = new DefaultHttpClient(); 
-			HttpPost httppost = new HttpPost(sparkURL + "stopcook");
-			
-			try {
-				// Add data
-				List<NameValuePair> toSpark = new ArrayList<NameValuePair>(1);
-				toSpark.add(new BasicNameValuePair("access_token", sparkToken));
-//				toSpark.add(new BasicNameValuePair("time", "1"));
-				httppost.setEntity(new UrlEncodedFormEntity(toSpark));
-				
-				// Execute HTTP Post Request
-				HttpResponse response = httpclient.execute(httppost);
-				
-			} catch (ClientProtocolException e) {
-				// TODO
-			} catch (IOException e) {
-				// TODO
-			}
+			Intent startFromDbIntent = new Intent(mainActivity, StartFromDbActivity.class);
+        	Bundle extras = new Bundle();
+        	extras.putString("NW_PRODUCT_NAME", "Custom Item");
+        	extras.putLong("NW_BARCODE", -1);
+        	extras.putLong("NW_COOKING_TIME", 0);
+        	startFromDbIntent.putExtras(extras);
+        	startActivity(startFromDbIntent);
 		}
 	};
+	
+	
 }
