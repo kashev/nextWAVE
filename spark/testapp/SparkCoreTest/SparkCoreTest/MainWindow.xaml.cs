@@ -48,10 +48,9 @@ namespace SparkCoreTest
                     values["time"] = timevalue;
 
                     //var response = 
-                    string response = string.Empty; 
-                        client.UploadValues("https://api.spark.io/v1/devices/48ff70065067555028111587/cook", values);
+                    var response =  client.UploadValues("https://api.spark.io/v1/devices/48ff70065067555028111587/cook", values);
 
-                        var responseString = response;// Encoding.Default.GetString(response);
+                        var responseString = Encoding.Default.GetString(response);
                     ReturnLabel.Content = responseString;
                 }
             }
@@ -70,10 +69,32 @@ namespace SparkCoreTest
 
                     values["access_token"] = "4348526a1c0932c678d6e971ce456b9d2ea4a1f5";
 
-                    string response = string.Empty;
-                    client.UploadValues("https://api.spark.io/v1/devices/48ff70065067555028111587/stopcook", values);
+                    var response = client.UploadValues("https://api.spark.io/v1/devices/48ff70065067555028111587/stopcook", values);
 
-                    var responseString = response;// Encoding.Default.GetString(response);
+                    var responseString =  Encoding.Default.GetString(response);
+                    ReturnLabel.Content = responseString;
+                }
+            }
+            catch (Exception ex)
+            {
+                ReturnLabel.Content = ex.ToString();
+            }
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    var values = new NameValueCollection();
+
+                    values["access_token"] = "4348526a1c0932c678d6e971ce456b9d2ea4a1f5";
+
+                    var response = client.UploadValues("https://api.spark.io/v1/devices/48ff70065067555028111587/opendoor", values);
+
+                    var responseString = Encoding.Default.GetString(response);
                     ReturnLabel.Content = responseString;
                 }
             }

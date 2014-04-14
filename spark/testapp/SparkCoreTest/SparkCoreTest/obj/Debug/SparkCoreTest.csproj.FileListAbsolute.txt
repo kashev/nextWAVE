@@ -1,0 +1,17 @@
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\bin\Debug\SparkCoreTest.exe.config
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\bin\Debug\SparkCoreTest.exe
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\bin\Debug\SparkCoreTest.pdb
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.csprojResolveAssemblyReference.cache
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\MainWindow.baml
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\MainWindow.g.cs
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\App.g.cs
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest_MarkupCompile.cache
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.g.resources
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.Properties.Resources.resources
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.csproj.GenerateResource.Cache
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.exe
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.pdb
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\bin\Debug\SparkCoreTest.exe.manifest
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\bin\Debug\SparkCoreTest.application
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.exe.manifest
+C:\Users\Ahmed\Dropbox\smrtMCRWV\SparkCoreTest\SparkCoreTest\obj\Debug\SparkCoreTest.application
