@@ -28,6 +28,14 @@ Team Brady Rocks built nextWAVE in 36 hours.
 
 Special thanks to **Isaac DuPree** for designing the logo.
 
+## Reviews
+
+"This is so dumb you fat kids used sellotape to hold this radioactive machine together you are going to get cancer what do they teach you at that school how to eat your lunch? Use your god given brane for once  #realtalk   #obliterated " - Miles Anderson
+
+"As the "techie culture" crawls ever so further up its own anus I crave the day when the ISIS will celebrate victory over the smoldering ruins of our failed civilization." - kortexsirvasil
+
+"not really more innovative than a normal microwave." - Dragam
+
 ## TODO
 
 - [X] Working Microwave
@@ -50,3 +58,4 @@ Special thanks to **Isaac DuPree** for designing the logo.
     - [X] Looks Nice
     - [X] Link to Github Code
     - [ ] Food Stream
+
